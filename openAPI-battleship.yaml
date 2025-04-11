@@ -1,0 +1,418 @@
+openapi: 3.0.3
+info:
+  title: Battleship
+  description: 'Battleship OpenAPI Programming Project Howest -  When you encounter issues with the reference server, please file a bug report by clicking the link below.'
+  version: 1.0.1
+  contact:
+    name: Mattias De Wael
+    url: 'https://git.ti.howest.be/TI/2022-2023/s2/programming-project/documentation/battleship-documentation/-/boards/2914'
+servers:
+  - url: 'https://project-i.ti.howest.be/battleship-00/api'
+    description: Production implementation running @ HOWEST
+  - url: 'http://localhost:8000'
+    description: Local API
+components:
+  securitySchemes:
+    playerToken:
+      type: http
+      scheme: bearer
+  schemas:
+    fleet:
+      description: A fleet describes the size of the ocean and the location per ship.
+      type: object
+      properties:
+        rows:
+          type: number
+          minimum: 5
+          maximum: 50
+        cols:
+          type: number
+          minimum: 5
+          maximum: 50
+        ships:
+          type: array
+          items:
+            $ref: '#/components/schemas/ship-location'
+      required:
+        - rows
+        - cols
+        - ships
+    ship-location:
+      type: object
+      properties:
+        name:
+          type: string
+        location:
+          type: array
+          items:
+            type: string
+    ship:
+      type: object
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+    gameType:
+      type: string
+      enum:
+        - simple
+        - salvo
+        - move
+        - move+salvo
+  responses:
+    gameJoined:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              gameId:
+                type: string
+              playerToken:
+                type: string
+paths:
+  /info:
+    get:
+      summary: Get API information
+      tags:
+        - General
+      responses:
+        '200':
+          description: OK
+      operationId: get-info
+      description: Get general information about the game and its api.
+  /ships:
+    get:
+      summary: Get ship details
+      tags:
+        - General
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ships:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ship'
+      operationId: get-ships
+      description: Get an overview of all the ships and their details.
+  /games:
+    delete:
+      summary: Delete all games
+      operationId: delete-games
+      responses:
+        '200':
+          description: OK
+      security:
+        - playerToken: []
+    get:
+      summary: Get a list of games running on the server.
+      tags:
+        - Game Management
+      responses:
+        '200':
+          description: OK
+      operationId: get-games
+      description: 'Get a list of all games. Use the query parameters to filter the list e.g., status (started, waiting) or by prefix.'
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - started
+              - waiting
+          in: query
+          name: status
+          description: 'started, waiting'
+        - schema:
+            type: string
+          in: query
+          name: prefix
+        - schema:
+            type: integer
+          in: query
+          name: rows
+        - schema:
+            type: integer
+          in: query
+          name: cols
+        - schema:
+            $ref: '#/components/schemas/gameType'
+          in: query
+          name: type
+          description: 'simple, salvo, move, move+salvo'
+    post:
+      summary: 'Join an existing game, or create a new one when there is no matching game.'
+      tags:
+        - Game Management
+      operationId: join-game
+      responses:
+        '200':
+          $ref: '#/components/responses/gameJoined'
+        '201':
+          $ref: '#/components/responses/gameJoined'
+      description: |
+        Join a game by starting a new one or by being matched to an unstarted game with the same prefix, type, and board size.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/gameType'
+                prefix:
+                  type: string
+                  minLength: 1
+                commander:
+                  type: string
+                  minLength: 1
+                fleet:
+                  $ref: '#/components/schemas/fleet'
+              required:
+                - type
+                - commander
+                - fleet
+            examples:
+              Alice wants to join a simple game.:
+                value:
+                  commander: Alice
+                  type: simple
+                  fleet:
+                    rows: 10
+                    cols: 12
+                    ships:
+                      - name: carrier
+                        location:
+                          - A-1
+                          - A-2
+                          - A-3
+                          - A-4
+                          - A-5
+                      - name: battleship
+                        location:
+                          - B-1
+                          - B-2
+                          - B-3
+                          - B-4
+                      - name: cruiser
+                        location:
+                          - C-1
+                          - C-2
+                          - C-3
+                      - name: submarine
+                        location:
+                          - D-1
+                          - D-2
+                          - D-3
+                      - name: destroyer
+                        location:
+                          - E-1
+                          - E-2
+              Alice wants to play a move game with Bob:
+                value:
+                  commander: Alice
+                  type: move
+                  prefix: secretGameForBobAndAlice
+                  fleet:
+                    rows: 10
+                    cols: 12
+                    ships:
+                      - name: carrier
+                        location:
+                          - A-1
+                          - A-2
+                          - A-3
+                          - A-4
+                          - A-5
+                      - name: battleship
+                        location:
+                          - B-1
+                          - B-2
+                          - B-3
+                          - B-4
+                      - name: cruiser
+                        location:
+                          - C-1
+                          - C-2
+                          - C-3
+                      - name: submarine
+                        location:
+                          - D-1
+                          - D-2
+                          - D-3
+                      - name: destroyer
+                        location:
+                          - E-1
+                          - E-2
+              Alice places the carrier (reversed direction) such it will not be able to move.:
+                value:
+                  commander: Alice
+                  type: move
+                  prefix: secretGameForBobAndAlice
+                  fleet:
+                    rows: 10
+                    cols: 12
+                    ships:
+                      - name: carrier
+                        location:
+                          - A-5
+                          - A-4
+                          - A-3
+                          - A-2
+                          - A-1
+                      - name: battleship
+                        location:
+                          - B-1
+                          - B-2
+                          - B-3
+                          - B-4
+                      - name: cruiser
+                        location:
+                          - C-1
+                          - C-2
+                          - C-3
+                      - name: submarine
+                        location:
+                          - D-1
+                          - D-2
+                          - D-3
+                      - name: destroyer
+                        location:
+                          - E-1
+                          - E-2
+        description: |-
+          In the example you see Alice who wants to join a simple game on a 10 by 12 board with all ships horizontally placed and aligned on the left edge of the board.
+          Optionally, you can add a prefix to create groups or mimmic private games.
+
+          The location of a ship is simply an array of the coordinates of the ship. Those coordinates have to be horizontally or vertaically, and subsequent, i.e, no 'holes' and in order. If the direction of the ship is important (e.g., in a game that allows ships to move) you should provide the coordinates from stern (rear) to bow (front).
+  '/games/{gameId}':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+    get:
+      summary: Get the details of a single game
+      tags:
+        - Game Management
+      responses:
+        '200':
+          description: OK
+      operationId: get-game-by-id
+      description: Get the details of a single game.
+      security:
+        - playerToken: []
+  '/games/{gameId}/fleet/{defendingCommander}/salvo':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: defendingCommander
+        in: path
+        required: true
+    post:
+      tags:
+        - Game Actions
+      description: Fire a number of shots on the enemy fleet.
+      summary: Fire salvo
+      operationId: fire-salvo
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salvo:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              Single shot salvo:
+                value:
+                  salvo:
+                    - A-1
+              Multi-shot salvo:
+                value:
+                  salvo:
+                    - B-1
+                    - B-2
+                    - B-3
+                    - A-2
+                    - C-2
+        description: |-
+          To fire a salvo you send an array with all the coordinates you want to hit.
+          The first example (single shot salvo) gives an example where you want your weapons to hit location A-1 (e.g., when you are playing a simple game).
+          The second example (multi-shot salvo) gives an example where you want your weapons to hit location B-2 an all (Manhattan) neighbours of B-2.
+      security:
+        - playerToken: []
+  '/games/{gameId}/fleet/{movingCommander}/{ship}/location':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: movingCommander
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: ship
+        in: path
+        required: true
+    patch:
+      tags:
+        - Game Actions
+      summary: Move a ship
+      operationId: move-ship
+      responses:
+        '200':
+          description: OK
+      description: |-
+        Move the ship one tile.
+        Because the ship can only move in one direction (forward) there is no need to pass a body to this request.
+      security:
+        - playerToken: []
+  '/games/{gameId}/fleet/{commander}':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: commander
+        in: path
+        required: true
+    get:
+      tags:
+        - Game Actions
+      summary: Get fleet details
+      operationId: get-fleet-details
+      responses:
+        '200':
+          description: OK
+      description: Get the details on the fleet of a commander.
+      security:
+        - playerToken: []
+tags:
+  - name: Game Actions
+  - name: Game Management
+  - name: General
