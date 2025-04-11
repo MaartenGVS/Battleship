@@ -1,0 +1,63 @@
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+h1 {
+    font-size: 4rem;
+    font-family: Copperplate Gothic Light, Arial, "Arial Black", serif;
+    text-align: center;
+}
+form{
+    text-align: center;
+}
+
+form div {
+    display: inline-block;
+    margin: 2rem;
+}
+form label{
+    display: block;
+}
+
+input[type="number"]{
+    margin-top: 2rem;
+    border-radius: 2rem;
+    text-align: center;
+    padding: 0.50rem;
+    margin-bottom: 6rem;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+span{
+    user-select: none;
+
+}
+button {
+    display: block;
+    margin: 0 auto;
+    background-color: sandybrown;
+    padding: 2rem;
+    border: green solid;
+    border-radius: 2rem;
+    width: 20%;
+    font-size: 3rem;
+    color: green;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color:green;
+    color: #f1f1f1;
+}
+

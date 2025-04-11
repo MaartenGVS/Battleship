@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleshit</title>
+    <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link color="#5bbad5" href="safari-pinned-tab.svg" rel="mask-icon">
+    <meta content="#da532c" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/grid.css">
+    <link rel="stylesheet" href="assets/css/move.css">
+    <script src="assets/js/initialiser.js"></script>
+    <script src="assets/js/data/_user-input.js"></script>
+    <script src="assets/js/data/_ships.js"></script>
+    <script src="assets/js/ui-interaction-handler.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+    <script src="assets/js/createGrid.js"></script>
+    <script src="assets/js/shipPlacement.js"></script>
+    <script src="assets/js/randomize-button-handler.js"></script>
+    <script src="assets/js/gamematcher.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/salvo.js"></script>
+    <script src="assets/js/gameUpdater.js"></script>
+    <script src="assets/js/move.js"></script>
+    <script src="assets/js/victoryAndDefeatScreenHandler.js"></script>
+    <script src="assets/js/shipToBePlaced.js"></script>
+
+
+</head>
+<body>
+<header>
+    <h1>Battlleshits</h1>
+</header>
+<main>
+    <div class="container">
+        <aside class="shipsToBePlaced">
+            <h2>drop your shits</h2>
+            <div class="image" id="destroyer">
+
+            </div>
+            <div class="image" id="submarine">
+
+            </div>
+            <div class="image" id="cruiser">
+
+            </div>
+            <div class="image" id="battleship">
+
+            </div>
+            <div class="image" id="carrier">
+            </div>
+        </aside>
+        <section>
+            <div id="error-message"></div>
+            <div class="commanderName myCommanderName">
+                <h3 class="hidden" id="friend">name</h3>
+                <img src="https://avatoon.net/wp-content/uploads/2021/08/turn-dog-photo-into-avatar.webp" alt="avatar">
+            </div>
+            <p id="attack" class="hidden"></p>
+            <div class="grid myGrid"></div>
+
+        </section>
+        <div class="partitionWall hidden"></div>
+        <section>
+            <div class="commanderName otherCommanderName">
+                <h3 class="hidden" id="foe">name</h3>
+                <img class="hidden" src="https://avatoon.net/wp-content/uploads/2021/05/cartoon-your-dog-photo.png"
+                     alt="avatar">
+            </div>
+            <p id="defend" class="hidden"></p>
+            <div class="grid otherGrid hidden"></div>
+        </section>
+        <div class="buttons">
+            <aside class="buttonPosition">
+                <button class="random">RANDOM</button>
+                <button class="turn hidden">PLACE SHITS</button>
+                <button class="dump hidden">DUMP SHITS</button>
+                <button class="next hidden">CONTINUE</button>
+                <button class="reset hidden">RESET</button>
+                <button class="getFleet hidden" data-next-page="waitingscreen.html">BATTLE</button>
+                <button class="shoot hidden">SHOOT</button>
+                <button class="move hidden">MOVE</button>
+            </aside>
+        </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <img class="hidden loading"
+         src="assets/media/loadingDog.gif"
+         alt="loadingImg">
+    <div class="victoryOrDefeatScreen hidden">
+        <img class="victoryOrDefeatImg" src="assets/media/victoryAndDefeatScreenImages/winImage.png" alt="winImg">
+        <h2>Do you want to play again?</h2>
+        <div class="buttons">
+            <button class="yes">Yes</button>
+            <button class="no">No</button>
+        </div>
+
+    </div>
+</main>
+</body>
+</html>

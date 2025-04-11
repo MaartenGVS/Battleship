@@ -1,0 +1,341 @@
+h1, h2, h3 {
+    font-size: 2rem;
+    font-family: Copperplate Gothic Light, Arial, "Arial Black", serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+p {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+header h1 {
+    margin: 2rem;
+    font-size: 3rem;
+}
+
+
+.container aside {
+    width: 20rem;
+}
+
+aside.shipsToBePlaced {
+    min-height: 28.5rem;
+    padding: 3rem 5rem 2rem 5rem;
+    margin-right: 10rem;
+}
+
+aside.buttonPosition {
+    min-height: 15rem;
+    padding-top: 7rem;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.grid {
+    display: grid;
+    align-items: center;
+    background-image: url(../media/gridImages/greeGrass.png);
+    margin-right: 5rem;
+    margin-left: 5rem;
+}
+
+
+.grid div {
+    height: 1.92rem;
+    display: grid;
+    align-items: center;
+    border: 1px solid black;
+    background-size: contain;
+}
+
+
+div.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container img {
+    height: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid black;
+    width: 2rem;
+}
+
+div.image img {
+    margin: 1.25rem 0 1.25rem 0;
+    display: block;
+    box-sizing: border-box;
+}
+
+
+div.selected {
+    border: 1px gold solid;
+    box-sizing: border-box;
+}
+
+div.place {
+    border: 1px red solid;
+    box-sizing: border-box;
+}
+
+div.middle {
+    border: 1px red solid;
+    box-sizing: border-box;
+}
+
+
+
+button {
+    display: block;
+    margin: 3rem 0 0 0;
+    background-color: sandybrown;
+    border: green solid;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.5rem;
+    color: green;
+    font-weight: bold;
+    padding: 1rem 1rem 1rem 1rem;
+    width: 13rem;
+}
+
+div.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 40rem;
+    margin-bottom: 10rem;
+    max-height: 0;
+}
+
+button:hover {
+    background-color: green;
+    color: #f1f1f1;
+}
+
+/* hit */
+.red {
+    border: solid rgba(255, 0, 0, 0.73) 0.2rem;
+}
+
+div.grid div {
+    text-align: center;
+    font-weight: bold;
+}
+
+.yellow {
+    border: solid yellow 0.1rem;
+}
+
+.partitionWall {
+    width: 0.2rem;
+    height: 75vh;
+    background-color: black;
+}
+
+.hit {
+    background-image: url(../media/gridImages/hit.png);
+    animation-name: fade;
+    animation-duration: 3s;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes sunk-animation {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.miss {
+    background-image: url(../media/gridImages/miss.png);
+    animation-name: fade;
+    animation-duration: 3s;
+}
+
+.sunk {
+    background-image: url(../media/gridImages/poopInBagOnGrass.png);
+    animation-name: sunk-animation;
+    animation-duration: 3s;
+}
+
+.head {
+    background-image: url(../media/gridImages/ships/EyedPoopOnGrass.png);
+}
+
+.tail {
+    background-image: url(../media/gridImages/ships/1PoopOnGrass.png);
+}
+
+.none {
+    background-image: none;
+}
+
+div.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 37rem;
+    width: 50rem;
+    border: none;
+    max-width: 100%;
+    border-radius: 20rem;
+}
+
+.commanderName {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    max-width: 100%;
+    height: 6rem;
+}
+
+img[alt="avatar"] {
+    max-width: 100%;
+    border: 1px solid blue;
+    border-radius: 4rem;
+    width: auto;
+    margin-bottom: auto;
+    margin-right: 5rem;
+    height: 6rem;
+}
+
+.myCommanderName img[alt="avatar"] {
+    transform: scaleX(-1);
+}
+
+
+.commanderName h3 {
+    flex-shrink: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-right: 1.5rem;
+    margin-left: 5rem;
+}
+
+
+#error-message, #message {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    padding: 1rem;
+    display: none;
+    border-radius: 2rem;
+    animation: blinkingBackground 2s infinite;
+}
+@keyframes blinkingBackground{
+    0%		{ background-color: #10c018;}
+    25%		{ background-color: #1056c0;}
+    50%		{ background-color: #ef0a1a;}
+    75%		{ background-color: #254878;}
+    100%	{ background-color: #04a1d5;}
+}
+
+.myGrid .selectedToMove{
+    border: 0.1rem solid yellow;
+}
+
+.moveP{
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.victoryOrDefeatScreen {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.victoryOrDefeatImg {
+    max-height: 50vh;
+}
+
+.victoryOrDefeatScreen h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    padding: 1.5rem;
+    background-color: green;
+    border-radius: 0.5rem;
+    border: green solid;
+}
+
+.victoryOrDefeatScreen .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 40rem;
+    margin: 5rem;
+}
+
+.victoryOrDefeatScreen .buttons button {
+    flex: 1;
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.prefixInput {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.prefixInput button[type="submit"] {
+    margin-left: 10rem;
+}
+
+.hidden {
+    display: none;
+}

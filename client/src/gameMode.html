@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleshit</title>
+    <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link color="#5bbad5" href="safari-pinned-tab.svg" rel="mask-icon">
+    <meta content="#da532c" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/girdCommonStyle.css">
+    <link rel="stylesheet" href="assets/css/gameMode.css">
+    <script src="assets/js/initialiser.js"></script>
+    <script src="assets/js/data/_user-input.js"></script>
+    <script src="assets/js/ui-interaction-handler.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+    <script src="assets/js/shipToBePlaced.js"></script>
+    <script src="assets/js/move.js"></script>
+
+
+</head>
+<body>
+<header>
+    <img src="assets/media/titles/gameMode.png" alt="Choose Game Mode">
+</header>
+
+<main>
+    <div class="gameModes">
+        <article id="simple" class="navigate" data-next-page="lobby.html">
+            <h2>Simple</h2>
+            <div class="details">
+                <p> Place yours while try to bag all of your opponents' shits and take home the victory! </p>
+            </div>
+        </article>
+        <article id="salvo" class="navigate" data-next-page="lobby.html">
+            <h2>Salvo</h2>
+            <div class="details">
+                <p> You can bag multiple shits on your turn. Increase your luck with this game mode! </p>
+            </div>
+        </article>
+        <article id="move" class="navigate" data-next-page="lobby.html">
+            <h2>Move</h2>
+            <div class="details">
+                <p> Mislead your opponent and move one of your shits or try to bag one of your opponents'! </p>
+            </div>
+        </article>
+        <article id="combo" class="navigate" data-next-page="lobby.html">
+            <h2>Combo</h2>
+            <div class="details">
+                <p> The ultimate game experience with this game mode. It’s move and salvo combined!</p>
+            </div>
+        </article>
+    </div>
+</main>
+</body>
+</html>

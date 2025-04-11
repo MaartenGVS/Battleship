@@ -1,0 +1,55 @@
+h1 {
+    font-size: 4rem;
+    font-family: Copperplate Gothic Light, Arial, "Arial Black", serif;
+    text-align: center;
+}
+
+form {
+    font-size: 1.50rem;
+    font-family: Verdana, Arial, "Arial Black", serif;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.form-container{
+    margin-bottom: 5rem;
+}
+
+.form-container div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+img{
+    vertical-align: middle;
+}
+
+label {
+    margin: 2rem 1rem 2rem 0;
+}
+
+input[type="text"] {
+    padding: 0.50rem;
+    border-radius: 2rem;
+    margin: 2rem 1rem;
+}
+
+button {
+    position: relative;
+    background-color: sandybrown;
+    color: green;
+    font-weight: bold;
+    padding: 1.5rem;
+    margin: 2rem 1rem 3rem;
+    border: green solid;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 40%;
+}
+
+button:hover {
+    background-color:green;
+    color: #f1f1f1;
+}
+

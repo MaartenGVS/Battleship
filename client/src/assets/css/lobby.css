@@ -1,0 +1,41 @@
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+div {
+    background-color: sandybrown;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    border: green solid;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 25%;
+    text-align: center;
+}
+
+div:hover {
+    background-color:green;
+    color: saddlebrown;
+}
+
+div p {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: green;
+}
+
+div:hover p{
+    color: #f1f1f1;
+}
+
+main img{
+    position: absolute;
+    bottom: 0;
+}

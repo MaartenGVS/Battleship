@@ -1,0 +1,58 @@
+.gameModes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.details {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem;
+    background-color: sandybrown;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+}
+
+.details p{
+    font-size: 1.5rem;
+    color: green;
+}
+
+article h2 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: green;
+}
+
+article:hover .details {
+    display: flex;
+    flex-direction: column;
+}
+
+article {
+    position: relative;
+    background-color: sandybrown;
+    padding: 1rem;
+    margin: 3rem;
+    border: green solid;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 30%;
+    text-align: center;
+}
+
+article:hover {
+    background-color:green;
+    color: saddlebrown;
+}
+
+article:hover h2 {
+    color: #f1f1f1;
+}

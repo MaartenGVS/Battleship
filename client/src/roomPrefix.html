@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleshit</title>
+    <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link color="#5bbad5" href="safari-pinned-tab.svg" rel="mask-icon">
+    <meta content="#da532c" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/girdCommonStyle.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/roomPrefix.css">
+    <script src="assets/js/initialiser.js"></script>
+    <script src="assets/js/data/_user-input.js"></script>
+    <script src="assets/js/ui-interaction-handler.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+    <script src="assets/js/shipToBePlaced.js"></script>
+    <script src="assets/js/move.js"></script>
+
+
+</head>
+<body>
+
+<header>
+    <h1>Private game</h1>
+</header>
+<main>
+    <form class="enterRoomCode">
+        <div class="form-container">
+            <label for="roomPrefix">Enter your room code:</label>
+            <input type="text" id="roomPrefix" name="roomPrefix" placeholder="E.g. JackRussel">
+            <img src="https://community.akamai.steamstatic.com/economy/image/a5HYp9Sw61Iks7TiNF57DFqT7My16WcNwCvwcWo07igq9g/360fx360f" alt="doggy">
+        </div>
+        <button class="navigate" data-next-page="lobby.html" type="button">Back</button>
+        <button class="navigate" type="submit">Continue</button>
+    </form>
+</main>
+
+</body>
+</html>

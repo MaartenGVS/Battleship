@@ -1,0 +1,41 @@
+header {
+    margin-bottom: 10rem;
+}
+
+header img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: sandybrown;
+    padding: 2rem;
+    margin: 3rem;
+    border: green solid;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 3rem;
+    color: green;
+    font-weight: bold;
+    position: absolute;
+    z-index: 100;
+}
+
+button:hover {
+    background-color:green;
+    color: #f1f1f1;
+}
+
+main img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: 60%;
+    margin-bottom: 3rem;
+}
